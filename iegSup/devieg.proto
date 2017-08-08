@@ -1,18 +1,8 @@
-getIDN {
-    out "*IDN?";
-    in "%\$1[^\r\n]";
-    ExtraInput = Ignore;
-}
+OutTerminator = "!";
+InTerminator = "!" CR LF;
 
-cmd {
-    out "\$1";
-}
-
-setD {
-    out "\$1 %d";
-}
-getD {
-    out "\$1?";
-    in "%d";
-    ExtraInput = Ignore;
+setMode {
+    out 0x26 "OPM%d";
+    in 0x26 "ACK";
+    in 0x26 "IEG%*d,OPM%*d";
 }
