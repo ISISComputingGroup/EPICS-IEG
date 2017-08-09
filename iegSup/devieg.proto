@@ -10,7 +10,7 @@ setMode {
 abort {
 	out 0x26 "KILL";
 	in 0x26 "ACK";
-	in 0x26 "IEG=%*d,KILL";
+	in 0x26 "IEG%(\$1.A)d,KILL";
 }
 
 getStatus {
