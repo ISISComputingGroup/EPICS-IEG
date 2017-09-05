@@ -1,0 +1,20 @@
+OutTerminator = "!";
+InTerminator = "!" CR LF;
+
+setMode {
+    out 0x26 "OPM%d";
+    in 0x26 "ACK";
+    in 0x26 "IEG%*d,OPM%*d";
+}
+
+abort {
+	out 0x26 "KILL";
+	in 0x26 "ACK";
+	in 0x26 "IEG%(\$1.A)d,KILL";
+}
+
+getStatus {
+	out 0x26 "STS0";
+	in 0x26 "ACK";
+	in 0x26 "IEG%(\$1.A)d,OPM%(\$1.B)d,VST%(\$1.C)d,ERR%(\$1.D)d,BPH%(\$1.E)d,SPL%(\$1.F)d,SPH%(\$1.G)d,SPR%(\$1.H)d";
+}
