@@ -1,6 +1,11 @@
 OutTerminator = "!";
 InTerminator = "!" CR LF;
 
+# Speaking with Matt North, the IEG device will sometimes hang for ~1 second.
+ReadTimeout = 2000;
+ReplyTimeout = 2000;
+WriteTimeout = 2000;
+
 setMode {
     out 0x26 "OPM%d";
     in 0x26 "ACK";
